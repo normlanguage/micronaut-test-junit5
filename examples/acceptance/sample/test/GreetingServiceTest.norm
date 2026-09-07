@@ -1,0 +1,45 @@
+package sample.test
+
+import jakarta.inject.Inject
+import junit.jupiter.api.Test
+import junit.jupiter.api.assertionsAssertEquals
+import junit.jupiter.api.assertionsAssertNotNull
+import micronaut.inject.context.annotation.Prototype
+import micronaut.test.core.annotation.MockBean
+import micronaut.test.junit5.extensions.junit5.annotation.MicronautTest
+
+interface Greeting {
+  String greet(String name)
+}
+
+@Prototype()
+class GreetingService implements Greeting {
+  String greet(String name) {
+    return "Hello, " + name
+  }
+}
+
+class TestGreetingService implements Greeting {
+  String greet(String name) {
+    return "Test, " + name
+  }
+}
+
+@MicronautTest(startApplication: false, transactional: false)
+class GreetingServiceTest {
+  @Inject() Greeting? greetingService
+
+  @MockBean(value: Greeting.class)
+  Greeting replacement() {
+    return TestGreetingService()
+  }
+
+  @Test()
+  Void injectsTheService() {
+    Greeting? service = greetingService
+    assertionsAssertNotNull(arg0: service)
+    if service != null {
+      assertionsAssertEquals(arg0: "Test, Norm", arg1: service.greet("Norm"))
+    }
+  }
+}
