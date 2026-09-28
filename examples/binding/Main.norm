@@ -1,4 +1,4 @@
-package micronaut.test.junit5
+package binding
 
 import micronaut.test.junit5.extensions.junit5.annotation.MicronautTest
 
@@ -7,5 +7,6 @@ class ApplicationTest {
 }
 
 Void main() {
+  require(condition: ApplicationTest.class.annotation<MicronautTest>() != null, message: "MicronautTest binding is missing")
   printLine("Micronaut test context")
 }
