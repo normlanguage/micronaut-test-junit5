@@ -4,15 +4,16 @@ Module module() {
     version: 1,
     exports: [],
     dependencies: [
-      dependency(repository: "github", name: "junit.jupiter", version: 2),
-      dependency(repository: "github", name: "micronaut.test.core", version: 3),
-      dependency(repository: "github", name: "micronaut.test.junit5", version: 3),
-      dependency(repository: "github", name: "micronaut.inject", version: 4),
-      dependency(repository: "github", name: "jakarta.inject", version: 4),
-      dependency(repository: "github", name: "micronaut.inject.processor", version: 4)
+      dependency(repository: "github", name: "junit.jupiter", version: 6),
+      dependency(repository: "github", name: "micronaut.test.core", version: 7),
+      dependency(repository: "github", name: "micronaut.test.junit5", version: 11),
+      dependency(repository: "github", name: "micronaut.inject", version: 6),
+      dependency(repository: "github", name: "jakarta.inject", version: 6),
+      dependency(repository: "github", name: "micronaut.inject.processor", version: 6)
     ]
   )
 }
+
 
 
 
