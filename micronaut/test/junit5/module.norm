@@ -1,7 +1,7 @@
 Module module() {
   return module(
     name: "micronaut.test.junit5",
-    version: 8,
+    version: 11,
     exports: ["MicronautTest"],
     binding: jarBinding(
       target: mavenJar(
@@ -30,6 +30,7 @@ Module module() {
     )
   )
 }
+
 
 
 
