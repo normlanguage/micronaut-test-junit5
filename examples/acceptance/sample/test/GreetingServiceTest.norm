@@ -1,12 +1,12 @@
 package sample.test
 
 import jakarta.inject.Inject
-import junit.jupiter.api.Test
-import junit.jupiter.api.assertionsAssertEquals
-import junit.jupiter.api.assertionsAssertNotNull
+import junit.jupiter.Test
+import junit.jupiter.assertionsAssertEquals
+import junit.jupiter.assertionsAssertNotNull
 import micronaut.inject.context.annotation.Prototype
-import micronaut.test.core.annotation.MockBean
-import micronaut.test.junit5.extensions.junit5.annotation.MicronautTest
+import micronaut.test.core.MockBean
+import micronaut.test.junit5.MicronautTest
 
 interface Greeting {
   String greet(String name)
@@ -43,3 +43,4 @@ class GreetingServiceTest {
     }
   }
 }
+
