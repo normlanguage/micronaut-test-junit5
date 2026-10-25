@@ -1,6 +1,6 @@
 package binding
 
-import micronaut.test.junit5.extensions.junit5.annotation.MicronautTest
+import micronaut.test.junit5.MicronautTest
 
 @MicronautTest(startApplication: false, transactional: false)
 class ApplicationTest {
