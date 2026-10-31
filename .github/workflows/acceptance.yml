@@ -14,14 +14,15 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: '24'
-      - name: Install released Norm
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Resolve Norm toolchain
+        id: toolchain
         run: |
-          gh release download v0.27.12 --repo normlanguage/Norm --pattern norm-v0.27.12-linux-x64.tar.gz --pattern SHA256SUMS --dir "$RUNNER_TEMP/norm-cli"
-          (cd "$RUNNER_TEMP/norm-cli" && grep ' norm-v0.27.12-linux-x64.tar.gz$' SHA256SUMS | sha256sum --check --strict)
-          tar -xzf "$RUNNER_TEMP/norm-cli/norm-v0.27.12-linux-x64.tar.gz" -C "$RUNNER_TEMP/norm-cli"
-          echo "$RUNNER_TEMP/norm-cli/norm/bin" >> "$GITHUB_PATH"
+          version=$(sed -n 's/^      norm-version: //p' .github/workflows/package.yml)
+          test -n "$version"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+      - uses: normlanguage/registry/.github/actions/setup-norm@581776aacb8d214de3a9fb30ec2abb4f422c89bb
+        with:
+          version: ${{ steps.toolchain.outputs.version }}
       - name: Reset package cache
         run: rm -rf "$HOME/.norm/cache/packages/github"
       - name: Package current module
